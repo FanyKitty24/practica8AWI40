@@ -167,18 +167,18 @@ def guardarAsistencia():
 
     return make_response(jsonify({}))
 
-@app.route("/producto/<int:id>")
-def editarProducto(id):
+@app.route("/asistencia/<int:id>")
+def editarAsistencia(id):
     if not con.is_connected():
         con.reconnect()
 
     cursor = con.cursor(dictionary=True)
     sql    = """
-    SELECT Id_Producto, Nombre_Producto, Precio, Existencias
+    SELECT idAsistencia, idEmpleado, idReporte, estado
 
-    FROM productos
+    FROM asistencias
 
-    WHERE Id_Producto = %s
+    WHERE idAsistencia = %s
     """
     val    = (id,)
 
@@ -188,8 +188,8 @@ def editarProducto(id):
 
     return make_response(jsonify(registros))
 
-@app.route("/producto/eliminar", methods=["POST"])
-def eliminarProducto():
+@app.route("/asistencia/eliminar", methods=["POST"])
+def eliminarAsistencia():
     if not con.is_connected():
         con.reconnect()
 
@@ -197,8 +197,8 @@ def eliminarProducto():
 
     cursor = con.cursor(dictionary=True)
     sql    = """
-    DELETE FROM productos
-    WHERE Id_Producto = %s
+    DELETE FROM asistencias
+    WHERE idAsistencia = %s
     """
     val    = (id,)
 
