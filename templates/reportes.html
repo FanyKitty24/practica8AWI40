@@ -1,1 +1,20 @@
-
+<div class="table-responsive">
+    <table class="table table-sm">
+        <thead class="table-active">
+            <tr>
+                <th>idReporte</th>
+                <th>fecha</th>
+                <th>comentarios</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for reporte in reportes %}
+            <tr>
+                <td>{{ reporte.idReporte }}</td>
+                <td>{{ reporte.fecha }}</td>
+                <td>{{ reporte.comentarios }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
