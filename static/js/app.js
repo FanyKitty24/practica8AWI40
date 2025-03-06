@@ -76,6 +76,11 @@ app.controller("appCtrl", function ($scope, $http) {
 })
 app.controller("asistenciasCtrl", function ($scope, $http) {
 })
+app.controller("empleadosCtrl", function ($scope, $http) {
+})
+app.controller("reportesCtrl", function ($scope, $http) {
+})
+
 
 const DateTime = luxon.DateTime
 let lxFechaHora
