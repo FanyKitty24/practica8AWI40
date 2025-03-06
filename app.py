@@ -54,11 +54,11 @@ def asistencias():
     cursor = con.cursor(dictionary=True)
     sql    = """
     SELECT idAsistencia,
-           idEmpleado,
-           idReporte,
+           empleado,
+           reporte,
            estado
 
-    FROM asistencias
+    FROM vistas
 
     LIMIT 10 OFFSET 0
     """
