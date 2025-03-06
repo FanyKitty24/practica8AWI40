@@ -43,7 +43,7 @@ def app2():
 
     con.close()
 
-    return "<h5>Hola, soy la view app</h5>"
+    return "<h5>Hola, soy Fany B)</h5>"
 
 @app.route("/asistencias")
 def asistencias():
@@ -77,8 +77,8 @@ def asistencias():
 
     return render_template("asistencias.html", asistencias=registros)
 
-@app.route("/productos/buscar", methods=["GET"])
-def buscarProductos():
+@app.route("/asistencias/buscar", methods=["GET"])
+def buscarAsistencias():
     if not con.is_connected():
         con.reconnect()
 
@@ -88,18 +88,18 @@ def buscarProductos():
     
     cursor = con.cursor(dictionary=True)
     sql    = """
-    SELECT Id_Producto,
-           Nombre_Producto,
-           Precio,
-           Existencias
+    SELECT idAsistencia,
+           idEmpleado,
+           idReporte,
+           estado
 
-    FROM productos
+    FROM asistencias
 
-    WHERE Nombre_Producto LIKE %s
-    OR    Precio          LIKE %s
-    OR    Existencias     LIKE %s
+    WHERE idEmpleado LIKE %s
+    OR    idReporte          LIKE %s
+    OR    estado     LIKE %s
 
-    ORDER BY Id_Producto DESC
+    ORDER BY idAsistencia DESC
 
     LIMIT 10 OFFSET 0
     """
@@ -128,32 +128,32 @@ def buscarProductos():
 
     return make_response(jsonify(registros))
 
-@app.route("/producto", methods=["POST"])
+@app.route("/asistencia", methods=["POST"])
 # Usar cuando solo se quiera usar CORS en rutas específicas
 # @cross_origin()
-def guardarProducto():
+def guardarAsistencia():
     if not con.is_connected():
         con.reconnect()
 
     id          = request.form["id"]
-    nombre      = request.form["nombre"]
-    precio      = request.form["precio"]
-    existencias = request.form["existencias"]
+    empleado      = request.form["empleado"]
+    reporte      = request.form["reporte"]
+    estado = request.form["estado"]
     # fechahora   = datetime.datetime.now(pytz.timezone("America/Matamoros"))
     
     cursor = con.cursor()
 
     if id:
         sql = """
-        UPDATE productos
+        UPDATE asistencias
 
-        SET Nombre_Producto = %s,
-            Precio          = %s,
-            Existencias     = %s
+        SET idEmpleado = %s,
+            idReporte      = %s,
+            estado    = %s
 
-        WHERE Id_Producto = %s
+        WHERE idAsistencia = %s
         """
-        val = (nombre, precio, existencias, id)
+        val = (empleado, reporte, estado, id)
     else:
         sql = """
         INSERT INTO productos (Nombre_Producto, Precio, Existencias)
