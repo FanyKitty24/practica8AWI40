@@ -1,0 +1,22 @@
+<div class="table-responsive">
+    <table class="table table-sm">
+        <thead class="table-active">
+            <tr>
+                <th>Id</th>
+                <th>Empleado</th>
+                <th>Reporte</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for asistencia in asistencias %}
+            <tr>
+                <td>{{ asistencia.idAsistencia }}</td>
+                <td>{{ asistencia.idEmpleado }}</td>
+                <td>{{ asistencia.idReporte }}</td>
+                <td>{{ asistencia.estado }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
