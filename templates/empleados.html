@@ -11,10 +11,10 @@
         <tbody>
             {% for empleado in empleados %}
             <tr>
-                <td>{{ asistencia.idEmpleado }}</td>
-                <td>{{ asistencia.nombreEmpleado }}</td>
-                <td>{{ asistencia.numero }}</td>
-                <td>{{ asistencia.fechaIngreso }}</td>
+                <td>{{ empleado.idEmpleado }}</td>
+                <td>{{ empleado.nombreEmpleado }}</td>
+                <td>{{ empleado.numero }}</td>
+                <td>{{ empleado.fechaIngreso }}</td>
             </tr>
             {% endfor %}
         </tbody>
